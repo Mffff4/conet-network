@@ -1,12 +1,6 @@
 # Conet Network Automation
 
-![Conet Network Automation](https://raw.githubusercontent.com/Mffff4/conet-network/main/.docker/logo.png)
-
 **Automated wallet recovery and mining setup for Conet Network**
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/mffff4/conet-node)](https://hub.docker.com/r/mffff4/conet-node)
-[![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/Mffff4/conet-network/blob/main/LICENSE)
-[![Telegram](https://img.shields.io/badge/Telegram-Join%20Chat-blue?logo=telegram)](https://t.me/+rq804XYKgjFkYjIy)
 
 ## Quick Start
 
@@ -64,12 +58,8 @@ docker run -it --rm \
 
 ## Support
 
-Join our [Telegram community](https://t.me/+rq804XYKgjFkYjIy) for support and updates.
+For support and updates join our Telegram: https://t.me/+rq804XYKgjFkYjIy
 
 ## License
 
 BSD 3-Clause License
-
----
-
-Made with ❤️ for Mffff4
