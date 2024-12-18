@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY src/browser_automation.py .
+COPY src/conet-node.py .
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt && \
