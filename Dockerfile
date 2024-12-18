@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY src/conet-node.py .
+COPY src ./src
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt && \
@@ -36,4 +36,4 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 ENV PYTHONUNBUFFERED=1
 
-ENTRYPOINT ["python", "src/conet-node.py"]
+ENTRYPOINT ["python", "./src/conet-node.py"]
