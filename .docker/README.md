@@ -17,7 +17,7 @@
 ```bash
 docker run -it --rm \
     --name conet-miner \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your twelve word seed phrase here" \
     --password "your-secure-password" \
     --keep-open
@@ -49,7 +49,7 @@ docker run -it --rm \
 # With authentication
 docker run -it --rm \
     --name conet-miner-1 \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "socks5://username:password@proxy.example.com:1080" \
@@ -58,7 +58,7 @@ docker run -it --rm \
 # Without authentication
 docker run -it --rm \
     --name conet-miner-2 \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "socks5://proxy.example.com:1080" \
@@ -70,7 +70,7 @@ docker run -it --rm \
 # HTTP with authentication
 docker run -it --rm \
     --name conet-miner-3 \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "http://username:password@proxy.example.com:8080" \
@@ -79,7 +79,7 @@ docker run -it --rm \
 # HTTPS with authentication
 docker run -it --rm \
     --name conet-miner-4 \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "https://username:password@proxy.example.com:8080" \
@@ -88,7 +88,7 @@ docker run -it --rm \
 # Without authentication
 docker run -it --rm \
     --name conet-miner-5 \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "http://proxy.example.com:8080" \
@@ -99,7 +99,7 @@ docker run -it --rm \
 ```bash
 docker run -it --rm \
     --name conet-miner-debug \
-    mffff4/conet-node \
+    mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "socks5://username:password@proxy.example.com:1080" \
