@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - 'Dockerfile'
       - 'requirements.txt'
+      - '.docker/**'
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -20,7 +21,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: mffff4/conet-node
   DOCKER_CACHE_KEY: docker-layer-cache-${{ github.sha }}
 
 jobs:
@@ -45,8 +46,8 @@ jobs:
           
           CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} || git diff --name-only HEAD~1 HEAD)
           
-          if echo "$CHANGED_FILES" | grep -qE '^(src/|Dockerfile|requirements\.txt)'; then
-            echo "Source code changes detected"
+          if echo "$CHANGED_FILES" | grep -qE '^(src/|Dockerfile|requirements\.txt|\.docker/)'; then
+            echo "Source code or documentation changes detected"
             echo "should_build=true" >> $GITHUB_OUTPUT
           elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
             echo "Tag push detected"
@@ -114,9 +115,12 @@ jobs:
 
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ github.repository }}
+          repository: mffff4/conet-node
           short-description: "Conet Network Automation Tool - Automated wallet recovery and mining setup"
           readme-filepath: ./.docker/README.md

@@ -15,7 +15,9 @@
 ## 🚀 Quick Start
 
 ```bash
-docker run -it --rm mffff4/conet-node \
+docker run -it --rm \
+    --name conet-miner \
+    mffff4/conet-node \
     --seed-phrase "your twelve word seed phrase here" \
     --password "your-secure-password" \
     --keep-open
@@ -45,14 +47,18 @@ docker run -it --rm mffff4/conet-node \
 ### SOCKS5
 ```bash
 # With authentication
-docker run -it --rm mffff4/conet-node \
+docker run -it --rm \
+    --name conet-miner-1 \
+    mffff4/conet-node \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "socks5://username:password@proxy.example.com:1080" \
     --keep-open
 
 # Without authentication
-docker run -it --rm mffff4/conet-node \
+docker run -it --rm \
+    --name conet-miner-2 \
+    mffff4/conet-node \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "socks5://proxy.example.com:1080" \
@@ -61,18 +67,43 @@ docker run -it --rm mffff4/conet-node \
 
 ### HTTP/HTTPS
 ```bash
-# With authentication
-docker run -it --rm mffff4/conet-node \
+# HTTP with authentication
+docker run -it --rm \
+    --name conet-miner-3 \
+    mffff4/conet-node \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "http://username:password@proxy.example.com:8080" \
     --keep-open
 
+# HTTPS with authentication
+docker run -it --rm \
+    --name conet-miner-4 \
+    mffff4/conet-node \
+    --seed-phrase "your seed phrase" \
+    --password "your-password" \
+    --proxy "https://username:password@proxy.example.com:8080" \
+    --keep-open
+
 # Without authentication
-docker run -it --rm mffff4/conet-node \
+docker run -it --rm \
+    --name conet-miner-5 \
+    mffff4/conet-node \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
     --proxy "http://proxy.example.com:8080" \
+    --keep-open
+```
+
+### Debug Mode with Proxy
+```bash
+docker run -it --rm \
+    --name conet-miner-debug \
+    mffff4/conet-node \
+    --seed-phrase "your seed phrase" \
+    --password "your-password" \
+    --proxy "socks5://username:password@proxy.example.com:1080" \
+    --debug \
     --keep-open
 ```
 
@@ -84,11 +115,28 @@ docker run -it --rm mffff4/conet-node \
 - Check your internet connection
 - Verify proxy settings if using one
 - Run with `--debug` for detailed logs
+- Check container logs: `docker logs conet-miner`
 
 #### Mining Issues
 - Verify seed phrase correctness
 - Ensure password meets requirements
 - Check network connectivity
+- View real-time logs: `docker logs -f conet-miner`
+
+#### Container Management
+```bash
+# View all running miners
+docker ps --filter "name=conet-miner"
+
+# Stop specific miner
+docker stop conet-miner-1
+
+# View logs of specific miner
+docker logs -f conet-miner-2
+
+# Remove stopped containers
+docker rm $(docker ps -a -q --filter "name=conet-miner" --filter "status=exited")
+```
 
 ## 💬 Support
 
