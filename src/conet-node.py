@@ -191,6 +191,7 @@ class ConetWalletAutomation:
             except Exception as e:
                 if not shutdown_event.is_set():
                     logger.error("Error monitoring balance: %s", str(e))
+                    sys.exit(1)
                 break
 
     async def recover_wallet(self, credentials: WalletCredentials) -> None:
@@ -435,12 +436,17 @@ async def main():
     
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
+        sys.exit(1)
     finally:
         if not shutdown_event.is_set():
             await graceful_shutdown()
+            sys.exit(1)
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        pass 
+        sys.exit(0)
+    except Exception as e:
+        logger.error(f"Fatal error: {str(e)}")
+        sys.exit(1) 

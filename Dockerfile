@@ -36,4 +36,7 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 ENV PYTHONUNBUFFERED=1
 
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD ps aux | grep "[p]ython ./src/conet-node.py" || exit 1
+
 ENTRYPOINT ["python", "./src/conet-node.py"]

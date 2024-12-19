@@ -7,6 +7,7 @@
 ```bash
 docker run -it --rm \
     --name conet-miner \
+    --restart unless-stopped \
     mffff4/conet-node:latest \
     --seed-phrase "your twelve word seed phrase here" \
     --password "your-secure-password" \
@@ -21,6 +22,7 @@ docker run -it --rm \
 - Enhanced Security
 - Proxy Support (SOCKS5/HTTP)
 - Random User Agent Rotation
+- Automatic Restart on Errors
 
 ## Command Line Options
 
@@ -38,6 +40,7 @@ docker run -it --rm \
 ```bash
 docker run -it --rm \
     --name conet-miner \
+    --restart unless-stopped \
     mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
@@ -49,6 +52,7 @@ docker run -it --rm \
 ```bash
 docker run -it --rm \
     --name conet-miner \
+    --restart unless-stopped \
     mffff4/conet-node:latest \
     --seed-phrase "your seed phrase" \
     --password "your-password" \
